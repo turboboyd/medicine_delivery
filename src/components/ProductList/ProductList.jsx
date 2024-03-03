@@ -5,7 +5,7 @@ const ProductList = ({ products, onAddToCart }) => {
     <ul className="w-4/5 p-4 flex flex-wrap justify-start items-stretch">
       {products.map((product) => (
         <ProductCard
-          key={product.id}
+          key={product._id}
           product={product}
           onAddToCart={onAddToCart}
         />

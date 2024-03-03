@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const NavigationTabs = () => (
   <div>
-    <NavLink to="/" exact>
+    <NavLink to="/">
       Главная
     </NavLink>
     <NavLink to="/cart">Корзина</NavLink>
