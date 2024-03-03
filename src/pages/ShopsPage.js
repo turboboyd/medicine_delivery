@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import NavigationTabs from "../components/NavigationTabs";
+import NavigationTabs from "../components/Navigation/Navigation";
 import ShopsList from "../components/ShopsList/ShopsList";
 import ProductList from "../components/ProductList/ProductList";
 
 import useDrugStores from "hooks/useRedux";
-
 
 const ShopsPage = () => {
   const { medicines, isLoading, error } = useDrugStores();

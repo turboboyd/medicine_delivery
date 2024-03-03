@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 
-import Navigation from "components/NavigationTabs";
+import Navigation from "components/Navigation/Navigation";
 import Loader from "components/Loader/Loader";
 
 export default function Layout() {
