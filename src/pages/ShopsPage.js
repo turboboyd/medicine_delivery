@@ -2,7 +2,27 @@ import React, { useEffect, useState } from "react";
 import NavigationTabs from "../components/NavigationTabs";
 import ShopsList from "../components/ShopsList/ShopsList";
 import ProductList from "../components/ProductList/ProductList";
-import { fetchMedicines, addToCart } from "../services/drugStoreService";
+
+import useDrugStores from "hooks/useRedux";
+
+
+const ShopsPage = () => {
+  const { medicines, isLoading, error } = useDrugStores();
+  const [idShop, setIdShop] = useState("65e307adbff50d7bf6e1c2b7");
+
+  const handleAddToCart = (product, idShop) => {
+    console.log("Добавлено в корзину", product);
+  };
+
+  return (
+    <div className="container mx-auto px-4 flex">
+      <ShopsList setIdShop={setIdShop} />
+      <ProductList idShop={idShop} onAddToCart={handleAddToCart} />
+    </div>
+  );
+};
+
+export default ShopsPage;
 
 // const products = [
 //   { id: 1, name: "Paracetamol", image: "paracetamol.png" },
@@ -26,34 +46,3 @@ import { fetchMedicines, addToCart } from "../services/drugStoreService";
 //   { id: 19, name: "Warfarin", image: "warfarin.png" },
 //   { id: 20, name: "Furosemide", image: "furosemide.png" },
 // ];
-
-const ShopsPage = () => {
-  const [products, setProducts] = useState([]);
-  const [idShop, setIdShop] = useState("65e307adbff50d7bf6e1c2b7");
-  
-  const handleAddToCart = (product, idShop) => {
-    console.log("Добавлено в корзину", product);
-  };
-
-
-
-  useEffect(() => {
-    fetchMedicines(idShop)
-      .then((data) => {
-        setProducts(data.data); // Предполагаем, что API возвращает объект с полем data, содержащим список аптек
-      })
-      .catch((error) => {
-        console.error("Ошибка при загрузке списка аптек:", error);
-      });
-  }, [idShop]);
-
-  return (
-    <div>
-      <NavigationTabs />
-      <ShopsList setIdShop={setIdShop} />
-      <ProductList products={products} onAddToCart={handleAddToCart} />
-    </div>
-  );
-};
-
-export default ShopsPage;

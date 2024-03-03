@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { fetchDrugStores } from "../../services/drugStoreService";
+import { useDispatch } from "react-redux";
+import { fetchDrugStores } from "../../redux/drugStoresReducer";
+import useDrugStores from "hooks/useRedux";
+
+
+
 
 const ShopsList = ({ setIdShop }) => {
-  const [shops, setShops] = useState([]);
+  const dispatch = useDispatch();
+  const { providers } = useDrugStores();
 
   useEffect(() => {
-    fetchDrugStores()
-      .then((data) => {
-        setShops(data.data);
-      })
-      .catch((error) => {
-        console.error("Ошибка при загрузке списка аптек:", error);
-      });
-  }, []);
+    dispatch(fetchDrugStores({ page: 1, pageSize: 20 }));
+  }, [dispatch]);
 
+  
   const handleShopClick = (id) => {
     setIdShop(id);
   };
@@ -22,7 +23,7 @@ const ShopsList = ({ setIdShop }) => {
     <aside className="w-1/5 bg-gray-100 p-4">
       <h2 className="font-bold mb-3">Shops:</h2>
       <ul className="space-y-2">
-        {shops.map((shop) => (
+        {providers.data.map((shop) => (
           <li key={shop._id}>
             <button
               onClick={() => handleShopClick(shop._id)}

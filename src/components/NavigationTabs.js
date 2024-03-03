@@ -1,15 +1,11 @@
-// src/components/NavigationTabs.js
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const NavigationTabs = () => (
-  <div>
-    <NavLink to="/">
-      Главная
-    </NavLink>
+const Navigation = () => (
+  <nav>
+    <NavLink to="/">Главная</NavLink>
     <NavLink to="/cart">Корзина</NavLink>
-    {/* Добавьте дополнительные ссылки по мере необходимости */}
-  </div>
+  </nav>
 );
 
-export default NavigationTabs;
+export default Navigation;
