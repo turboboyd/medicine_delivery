@@ -15,7 +15,7 @@ export const fetchDrugStores = createAsyncThunk(
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error("Ошибка при получении списка аптек:", error);
+      console.error("Error when retrieving a list of pharmacies:", error);
       throw error;
     }
   }
@@ -35,7 +35,7 @@ export const fetchMedicines = createAsyncThunk(
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error("Ошибка при получении списка Лекарств:", error);
+      console.error("Error when retrieving a list of Medicines:", error);
       throw error;
     }
   }
