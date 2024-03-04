@@ -1,21 +1,21 @@
-import { Formik, Form, } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { placeOrder } from "../../redux/cart/cartReducer"; 
+import { placeOrder } from "../../redux/cart/cartReducer";
 import { useNavigate } from "react-router-dom";
 import InputField from "./InputField";
+import PropTypes from "prop-types";
 
 const validationSchema = Yup.object().shape({
-  address: Yup.string().required("Требуется адрес"),
-  email: Yup.string().email("Неверный email").required("Требуется email"),
+  address: Yup.string().required("Address is required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
   phoneNumber: Yup.string()
-    .matches(/^[0-9]+$/, "Только цифры")
-    .required("Требуется телефон"),
-  name: Yup.string().required("Требуется имя"),
+    .matches(/^[0-9]+$/, "Only digits allowed")
+    .required("Phone number is required"),
+  name: Yup.string().required("Name is required"),
 });
 
-
-const AddressForm = ({ formRef }) => {
+const CartForm = ({ formRef }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
 
@@ -30,7 +30,6 @@ const AddressForm = ({ formRef }) => {
         quantity,
       })),
     };
-
 
     dispatch(placeOrder(orderData))
       .unwrap()
@@ -88,4 +87,11 @@ const AddressForm = ({ formRef }) => {
   );
 };
 
-export default AddressForm;
+export default CartForm;
+
+CartForm.propTypes = {
+  formRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
+};
