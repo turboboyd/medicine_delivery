@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 const OrderSummary = ({ submitForm }) => {
 
     const cart = useSelector((state) => state.cart.cart);
+    console.log('cart: ', cart);
   return (
     <div>
       <p> Order summary</p>
