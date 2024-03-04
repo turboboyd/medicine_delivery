@@ -24,7 +24,6 @@ export const fetchDrugStores = createAsyncThunk(
 export const fetchMedicines = createAsyncThunk(
   "medicines/fetchMedicines",
   async ({ id, page = 1, pageSize = 20 }, thunkAPI) => {
-    console.log("id: ", id);
     try {
       const response = await fetch(
         `${API_BASE_URL}/drug-stores/${id}/medicines?page=${page}&pageSize=${pageSize}`

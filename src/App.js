@@ -1,8 +1,10 @@
-import {Routes, Route } from "react-router-dom";
-import ShopsPage from "./pages/ShopsPage";
-import CartPage from "./pages/CartPage";
+import { lazy } from "react";
+import { Routes, Route } from "react-router-dom";
 import Layout from "components/Layout/Layout";
-import CartSuccessPage from "pages/CartSuccessPage";
+const ShopsPage = lazy(() => import("./pages/ShopsPage"));
+const CartPage = lazy(() => import("./pages/CartPage"));
+const CartSuccessPage = lazy(() => import("pages/CartSuccessPage"));
+const AllOrderPage = lazy(() => import("pages/AllOrderPage"));
 
 function App() {
   return (
@@ -11,6 +13,7 @@ function App() {
         <Route path="/" element={<ShopsPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/success" element={<CartSuccessPage />} />
+        <Route path="/allOrder" element={<AllOrderPage />} />
       </Route>
     </Routes>
   );

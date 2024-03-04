@@ -5,8 +5,6 @@ import { API_BASE_URL } from "util/const";
 export const placeOrder = createAsyncThunk(
   "cart/placeOrder",
   async (orderData, { rejectWithValue }) => {
-    console.log("orderData: ", orderData);
-    console.log("JSON.stringify(orderData): ", JSON.stringify(orderData));
     try {
       const response = await fetch(`${API_BASE_URL}/stores/order`, {
         method: "POST",
@@ -25,8 +23,25 @@ export const placeOrder = createAsyncThunk(
   }
 );
 
+export const fetchAllOrders = createAsyncThunk(
+  "cart/fetchAllOrders",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/stores/orders`);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const initialState = {
   cart: [],
+  orders: [],
   isLoading: false,
   error: null,
 };
@@ -83,6 +98,15 @@ const cartSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.cart = [];
+      })
+      .addCase(fetchAllOrders.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.orders = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchAllOrders.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });

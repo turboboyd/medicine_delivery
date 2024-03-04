@@ -15,6 +15,12 @@ const Navigation = () => (
     >
       Shopping Cart
     </NavLink>
+    <NavLink
+      to="/allOrder"
+      className="hover:text-green-400 px-4 py-3 rounded-md text-sm font-medium"
+    >
+      All Order
+    </NavLink>
   </nav>
 );
 
