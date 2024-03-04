@@ -31,8 +31,15 @@ const AddressForm = ({ formRef }) => {
       })),
     };
 
-    dispatch(placeOrder(orderData));
-    navigate("/success");
+
+    dispatch(placeOrder(orderData))
+      .unwrap()
+      .then(() => {
+        navigate("/success");
+      })
+      .catch((error) => {
+        console.error("Order placement failed:", error);
+      });
   };
 
   return (
