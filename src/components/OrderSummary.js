@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 const OrderSummary = ({ submitForm }) => {
   const cart = useSelector((state) => state.cart.cart);
-  console.log("cart: ", cart);
   const total = cart.reduce((sum, item) => sum + item.quantity * item.price, 0);
   return (
     <div>
