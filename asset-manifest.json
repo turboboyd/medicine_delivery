@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/medicine_delivery/static/css/main.b3c48f25.css",
+    "main.js": "/medicine_delivery/static/js/main.ab19fa0b.js",
+    "index.html": "/medicine_delivery/index.html",
+    "main.b3c48f25.css.map": "/medicine_delivery/static/css/main.b3c48f25.css.map",
+    "main.ab19fa0b.js.map": "/medicine_delivery/static/js/main.ab19fa0b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b3c48f25.css",
+    "static/js/main.ab19fa0b.js"
+  ]
+}
