@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Form, } from "formik";
 import * as Yup from "yup";
-import { useDispatch, useSelector } from "react-redux"; // Убедитесь, что вы импортировали хук useDispatch
-import { placeOrder } from "../redux/cart/cartReducer"; // Импортируйте action creator для размещения заказа
+import { useDispatch, useSelector } from "react-redux";
+import { placeOrder } from "../../redux/cart/cartReducer"; 
+import { useNavigate } from "react-router-dom";
+import InputField from "./InputField";
 
-// Ваша схема валидации
 const validationSchema = Yup.object().shape({
   address: Yup.string().required("Требуется адрес"),
   email: Yup.string().email("Неверный email").required("Требуется email"),
@@ -14,27 +14,13 @@ const validationSchema = Yup.object().shape({
   name: Yup.string().required("Требуется имя"),
 });
 
-const InputField = ({ label, name, type, placeholder }) => (
-  <label className="block">
-    {label}:
-    <Field
-      type={type}
-      name={name}
-      placeholder={placeholder}
-      className="mt-1 p-2 border border-gray-300 rounded w-full"
-    />
-    <ErrorMessage
-      name={name}
-      component="div"
-      className="text-red-500 text-sm"
-    />
-  </label>
-);
-const AddressForm = () => {
+
+const AddressForm = ({ formRef }) => {
   const dispatch = useDispatch();
-  const formRef = useRef(null);
   const cartItems = useSelector((state) => state.cart.cart);
-  // Обработчик отправки, адаптированный для использования с Formik
+
+  const navigate = useNavigate();
+
   const handleSubmit = (values) => {
     const orderData = {
       ...values,
@@ -46,12 +32,7 @@ const AddressForm = () => {
     };
 
     dispatch(placeOrder(orderData));
-  };
-
-  const submitForm = () => {
-    if (formRef.current) {
-      formRef.current.handleSubmit();
-    }
+    navigate("/success");
   };
 
   return (
@@ -96,13 +77,6 @@ const AddressForm = () => {
           </Form>
         )}
       </Formik>
-      <button
-        type="button"
-        onClick={submitForm} // Make sure to give your form an ID and reference it here
-        className="w-32 bg-blue-500 text-white p-2 rounded hover:bg-blue-600 disabled:opacity-50 mt-4" // Corrected className for styling
-      >
-        Submit
-      </button>
     </div>
   );
 };

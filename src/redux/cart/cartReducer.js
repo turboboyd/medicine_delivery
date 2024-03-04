@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { API_BASE_URL } from "util/const";
 
 export const placeOrder = createAsyncThunk(
   "cart/placeOrder",
@@ -7,21 +8,17 @@ export const placeOrder = createAsyncThunk(
     console.log("orderData: ", orderData);
     console.log("JSON.stringify(orderData): ", JSON.stringify(orderData));
     try {
-      const response = await fetch("http://localhost:5000/api/stores/order", {
+      const response = await fetch(`${API_BASE_URL}/stores/order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(orderData),
       });
-
+      console.log("response: ", response);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-
-      const result = await response.json();
-      console.log("result: ", result);
-      return result;
     } catch (error) {
       return rejectWithValue(error.message);
     }

@@ -39,12 +39,15 @@ const CartProductCard = () => {
   return (
     <div className="max-h-[70vh]  w-1/2 overflow-auto px-4 py-4 border rounded-lg">
       <ul className="flex flex-col gap-4">
-        {cart.map((product) => (
-          <li
-            key={product.medicineId}
-            className="p-4 flex gap-4 border rounded-lg"
-          >
-            <div className="w-1/2 h-28 bg-gray-300"></div>
+        {cart.map((product, i) => (
+          <li key={i} className="p-4 flex gap-4 border rounded-lg">
+            <div className="w-1/2 h-28 bg-gray-300">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="h-48 w-full object-cover"
+              />
+            </div>
             <div className="flex flex-col justify-between">
               <div className="font-bold">{product.name}</div>
               <div>Price: {product.price}$</div>
