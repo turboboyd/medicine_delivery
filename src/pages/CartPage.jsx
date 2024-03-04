@@ -11,8 +11,8 @@ const CartPage = () => {
     }
   };
   return (
-    <div className="container mx-auto px-4 relative">
-      <div className="flex gap-8">
+    <div className="container mx-auto px-4 max-h-[80vh]">
+      <div className="flex gap-8 max-h-[75vh]">
         <CartForm formRef={formRef} />
         <CartProductCard />
       </div>

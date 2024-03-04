@@ -42,7 +42,7 @@ const CartForm = ({ formRef }) => {
   };
 
   return (
-    <div className="max-h-[70vh] w-1/2 overflow-auto max-h-screen px-4 py-4 border rounded-lg">
+    <div className=" w-1/2 overflow-auto max-h-screen px-4 py-4 border rounded-lg">
       <Formik
         innerRef={formRef}
         initialValues={{

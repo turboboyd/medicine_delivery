@@ -37,7 +37,7 @@ const CartProductCard = () => {
   );
 
   return (
-    <div className="max-h-[70vh]  w-1/2 overflow-auto px-4 py-4 border rounded-lg">
+    <div className="  w-1/2 overflow-auto px-4 py-4 border rounded-lg">
       <ul className="flex flex-col gap-4">
         {cart.map((product, i) => (
           <li key={i} className="p-4 flex gap-4 border rounded-lg">
